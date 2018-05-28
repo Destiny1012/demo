@@ -54,6 +54,45 @@ a:hover {
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
     }
+    .navbar-header {
+        float: left;
+    }
+    .navbar-toggle {
+        display: none;
+    }
+    .navbar-collapse.collapse {
+        display: block !important;
+    }
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+    .navbar-right {
+        float: right !important;
+    }
+    .sidebar {
+        position: absolute;
+        top: 0;
+        margin-top: 51px;
+        width: 250px;
+        z-index: 1;
+    }
+    .navbar-collapse {
+        width: auto;
+        border-top: 0;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+    .navbar-collapse.in {
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-header {
+        width: 100%;
+    }
 }
 
 /* Login */
@@ -100,20 +139,13 @@ a:hover {
 
 /** navbar-header **/
 
-.navbar-header {
-    float: left;
-}
-
-.navbar-right {
-    float: right !important;
-}
-
-.navbar-default .navbar-brand {
-    color: #777;
-}
-
-.navbar-default .navbar-collapse {
-    border-color: #e7e7e7;
+.navbar-default {
+    .navbar-brand {
+        color: #777;
+    }
+    .navbar-collapse {
+        border-color: #e7e7e7;
+    }
 }
 
 .navbar-brand {
@@ -124,15 +156,13 @@ a:hover {
     line-height: 20px;
 }
 
-/** navbar-top-links **/
-
-@media (min-width: 768px) {
-    .navbar-top-links .dropdown-messages,
-    .navbar-top-links .dropdown-tasks,
-    .navbar-top-links .dropdown-alerts {
-        margin-left: auto;
-    }
+.navbar-toggle {
+    position: relative;
+    float: right;
+    margin: 8px 15px;
 }
+
+/** navbar-top-links **/
 
 .navbar-top-links {
     margin-right: 0;
@@ -182,22 +212,6 @@ a:hover {
 
 /* navbar-sidbar */
 
-@media (min-width: 768px) {
-    .sidebar {
-        position: absolute;
-        top: 0;
-        margin-top: 51px;
-        width: 250px;
-        z-index: 1;
-    }
-    .navbar-collapse {
-        width: auto;
-        border-top: 0;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-    }
-}
-
 .sidebar {
     .sidebar-nav.navbar-collapse {
         padding-left: 0;
@@ -226,6 +240,20 @@ a:hover {
             border-color: #6c757d;
         }
     }
+    .nav-second-level li, .nav-third-level li {
+        border-bottom: none !important;
+    }
+    .nav-second-level li a {
+        padding-left: 37px;
+    }
+    .nav-third-level li a {
+        padding-left: 52px;
+    }
+}
+
+.navbar-collapse {
+    overflow-x: visible;
+    border-top: 1px solid transparent;
 }
 
 /* Page */

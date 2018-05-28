@@ -16,4 +16,7 @@ Route::get('/login', 'PageController@login')->name('login');
 Route::get('/register', 'PageController@register')->name('register');
 
 Route::post('/login', 'UserController@login')->name('login');
-ROute::post('/logout', 'UserController@logout')->name('logout');
+Route::post('/logout', 'UserController@logout')->name('logout');
+
+Route::resource('/goods', 'GoodsController');
+Route::resource('/catalog', 'CatalogController');

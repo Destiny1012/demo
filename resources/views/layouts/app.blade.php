@@ -27,6 +27,10 @@
 
             <!-- navbar-header -->
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle btn btn-outline-secondary" data-toggle="collapse" data-target="#side-bar" aria-expanded="false"
+                    aria-controls="side-bar">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <a class="navbar-brand" href="{{ route('home') }}">后台管理</a>
             </div>
 
@@ -85,8 +89,8 @@
 
             <!-- sidebar -->
             <div class="navbar-default sidebar">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav in" id="side-menu">
+                <div class="sidebar-nav navbar-collapse collapse" id="side-bar">
+                    <ul class="nav in accordion" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group input-group-sm custom-search-form">
                                 <input class="form-control input-group-propend" type="text" placeholder="搜索…">
@@ -122,11 +126,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" id="goods-btn" data-toggle="collapse" data-target="#goods-dropdown" aria-expanded="false" aria-controls="goods-dropdown">
                                 <i class="fas fa-list-alt fa-fw"></i>
-                                商品目录
+                                商品管理
                                 <i class="right fas fa-caret-left"></i>
                             </a>
+                            <ul id="goods-dropdown" class="nav nav-second-level collapse" aria-labelledby="goods-btn" data-parent="#side-bar">
+                                <li><a href="#">商品列表</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#">
