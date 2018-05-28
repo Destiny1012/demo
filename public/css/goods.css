@@ -1,0 +1,14 @@
+.goods-card .card-body {
+  overflow-x: scroll;
+}
+
+.goods-card .table {
+  table-layout: fixed;
+  min-width: 600px;
+}
+
+.goods-card .table th,
+.goods-card .table td {
+  padding: 5px;
+}
+

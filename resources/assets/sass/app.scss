@@ -27,16 +27,33 @@
 
 body {
     background-color: #f8f8f8;
+    width: 100%;
+    height: 100%;
 }
 
 #wrapper {
     width: 100%;
+    height: 100%;
 }
 
 #page-wrapper {
-    padding: 0 15px;
-    min-height: 568px;
-    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    padding: 105px 15px;
+    font-size: 14px;
+    overflow-y: scroll;
+}
+
+.page-header {
+    padding-left: 25px;
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    color: var(--gray-dark);
+    border-bottom: 2px solid var(--gray);
 }
 
 a:hover {
@@ -49,9 +66,12 @@ a:hover {
 
 @media (min-width: 768px) {
     #page-wrapper {
-        position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 250px;
+        padding: 50px 30px;
         border-left: 1px solid #e7e7e7;
     }
     .navbar-header {
@@ -86,6 +106,10 @@ a:hover {
     }
     .navbar-collapse.in {
         overflow-y: visible;
+    }
+    .footer {
+        left: 250px;
+        border-left: 1px solid #e7e7e7;
     }
 }
 
@@ -224,6 +248,7 @@ a:hover {
         position: relative;
         display: block;
         width: 100%;
+        font-size: 14px;
         border-bottom: 1px solid #e7e7e7;
         a {
             position: relative;
@@ -237,10 +262,11 @@ a:hover {
             background-color: #eee;
         }
         .form-control {
-            border-color: #6c757d;
+            border-color: var(--secondary);
         }
     }
-    .nav-second-level li, .nav-third-level li {
+    .nav-second-level li,
+    .nav-third-level li {
         border-bottom: none !important;
     }
     .nav-second-level li a {
@@ -256,23 +282,19 @@ a:hover {
     border-top: 1px solid transparent;
 }
 
-/* Page */
-
-.page-header {
-    padding-bottom: 9px;
-    margin: 40px 0 20px;
-    border-bottom: 2px solid #eee;
-}
-
 /* Footer */
 
 .footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
     width: 100%;
     min-height: 30px;
-    margin: 0 0 0 250px;
     padding: 0 20px;
     color: #333;
     background-color: #f8f8f8;
-    border-left: 1px solid #e7e7e7;
     border-top: 1px solid #e7e7e7;
+    p {
+        margin: 0;
+    }
 }

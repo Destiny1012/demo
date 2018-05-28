@@ -28,7 +28,6 @@ class UserController extends Controller
             session()->flash('danger', '您没有访问权限！');
             return redirect()->back();
         }
-
     }
 
     /**

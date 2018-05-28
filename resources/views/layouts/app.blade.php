@@ -14,17 +14,15 @@
     <title>@yield('title', '后台管理系统') - by Tricker</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> @yield('style')
 
 </head>
 
 <body>
 
     <div id="wrapper">
-
         <!-- navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-
             <!-- navbar-header -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle btn btn-outline-secondary" data-toggle="collapse" data-target="#side-bar" aria-expanded="false"
@@ -132,7 +130,8 @@
                                 <i class="right fas fa-caret-left"></i>
                             </a>
                             <ul id="goods-dropdown" class="nav nav-second-level collapse" aria-labelledby="goods-btn" data-parent="#side-bar">
-                                <li><a href="#">商品列表</a></li>
+                                <li><a href="{{ route('goods.index') }}">商品列表</a></li>
+                                <li><a href="{{ route('goods.create') }}">添加商品</a></li>
                             </ul>
                         </li>
                         <li>
@@ -147,9 +146,9 @@
 
         </nav>
 
-        <div id="page-wrapper" style="min-height: 562px;">
+        <div id="page-wrapper" style="background-color: white;">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col">
                     <h2 class="page-header">
                         @yield('page', '控制面板')
                     </h2>
@@ -166,8 +165,10 @@
         </footer>
     </div>
 
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('script')
 
 </body>
 

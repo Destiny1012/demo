@@ -1,0 +1,15 @@
+@media(min-width: 768px) {}
+
+.goods-card {
+    .card-body {
+        overflow-x: scroll;
+    }
+    .table {
+        table-layout: fixed;
+        min-width: 600px;
+        th,
+        td {
+            padding: 5px;
+        }
+    }
+}
