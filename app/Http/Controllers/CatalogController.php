@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Catalog;
 
 class CatalogController extends Controller
 {
@@ -13,7 +14,8 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        //
+        $catalogs = Catalog::all();
+        return $catalogs;
     }
 
     /**
@@ -34,7 +36,15 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'catalog' => 'required',
+        ]);
+        Catalog::create([
+            'catalog' => $validatedData->catalog,
+        ]);
+
+        $catalogs = Catalog::all();
+        return $catalogs;
     }
 
     /**
@@ -68,7 +78,12 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $catalog = Catalog::find($id);
+        $catalog->catalog = $request->catalog;
+        $catalog->save;
+
+        $catalogs = Catalog::all();
+        return $catalogs;
     }
 
     /**
@@ -79,6 +94,9 @@ class CatalogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Catalog::destroy($id);
+
+        $catalogs = Catalog::all();
+        return $catalogs;
     }
 }

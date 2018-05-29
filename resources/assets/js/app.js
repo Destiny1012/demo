@@ -19,3 +19,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#page-wrapper'
 });
+document.getElementById('image').addEventListener('change', function () {
+    var input = document.getElementById('image').files[0];
+    var image = document.querySelector('.image');
+    var file = new FileReader();
+    file.onload = function () {
+        var result = this.result;
+        image.setAttribute('src', result);
+        image.classList.remove('image-ctrl');
+    }
+    file.readAsDataURL(input);
+})

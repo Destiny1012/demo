@@ -13894,7 +13894,18 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#page-wrapper'
+    el: '#page-wrapper'
+});
+document.getElementById('image').addEventListener('change', function () {
+    var input = document.getElementById('image').files[0];
+    var image = document.querySelector('.image');
+    var file = new FileReader();
+    file.onload = function () {
+        var result = this.result;
+        image.setAttribute('src', result);
+        image.classList.remove('image-ctrl');
+    };
+    file.readAsDataURL(input);
 });
 
 /***/ }),

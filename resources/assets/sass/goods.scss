@@ -1,15 +1,58 @@
 @media(min-width: 768px) {}
 
-.goods-card {
-    .card-body {
+@media(max-width: 768px) {
+    .table-responsive {
         overflow-x: scroll;
     }
+}
+
+.goods-card {
     .table {
         table-layout: fixed;
         min-width: 600px;
         th,
         td {
             padding: 5px;
+        }
+    }
+    .image-box {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        #image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 160px;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 777;
+        }
+        .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 160px;
+            border: 1px solid var(--gray);
+            z-index: 666;
+        }
+        .image-ctrl {
+            opacity: 0;
+        }
+        .image-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 160px;
+            color: var(--gray);
+            font-size: 60px;
+            text-align: center;
+            line-height: 158px;
+            border: 1px solid var(--gray);
+            z-index: 555;
         }
     }
 }
