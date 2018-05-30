@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14,19 +14,31 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+var app = {
+    isLoading: true,
+}
 
-const app = new Vue({
-    el: '#page-wrapper'
-});
 document.getElementById('image').addEventListener('change', function () {
+    app.imageReload();
+})
+
+document.getElementById('catalog-control').addEventListener('click', function () {
+    app.openCatalog();
+})
+
+app.imageReload = function () {
     var input = document.getElementById('image').files[0];
     var image = document.querySelector('.image');
     var file = new FileReader();
     file.onload = function () {
-        var result = this.result;
-        image.setAttribute('src', result);
+        image.src = this.result;
         image.classList.remove('image-ctrl');
     }
     file.readAsDataURL(input);
-})
+}
+
+app.openCatalog = function () {
+    document.querySelector('.catalog-box').hidden = false;
+    document.getElementById('catalog-control').hidden = true;
+}

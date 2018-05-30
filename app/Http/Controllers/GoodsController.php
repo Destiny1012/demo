@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Goods;
+use App\Catalog;
 
 class GoodsController extends Controller
 {
@@ -36,7 +37,8 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        return view('goods.create');
+        $catalogs = Catalog::all();
+        return view('goods.create', compact('catalogs'));
     }
 
     /**
@@ -93,5 +95,12 @@ class GoodsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function test()
+    {
+        $goods = Goods::all();
+        $catalogs = Catalog::all();
+        return compact($goods, $catalogs);
     }
 }

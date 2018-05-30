@@ -39,7 +39,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validatedData = $request->validate([
-            'account' => 'required|max:20',
+            'account' => 'required|max:20|unique',
             'password' => 'required|between:6,20',
         ]);
 

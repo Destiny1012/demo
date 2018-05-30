@@ -37,14 +37,14 @@ class CatalogController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'catalog' => 'required',
-        ]);
-        Catalog::create([
-            'catalog' => $validatedData->catalog,
+            'catalog' => 'required|unique:catalogs',
         ]);
 
-        $catalogs = Catalog::all();
-        return $catalogs;
+        Catalog::create([
+            'catalog' => $request->catalog,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -78,12 +78,15 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'catalog' => 'required|unique:catalogs',
+        ]);
+        
         $catalog = Catalog::find($id);
         $catalog->catalog = $request->catalog;
-        $catalog->save;
+        $catalog->save();
 
-        $catalogs = Catalog::all();
-        return $catalogs;
+        return redirect()->back();
     }
 
     /**
@@ -96,7 +99,6 @@ class CatalogController extends Controller
     {
         Catalog::destroy($id);
 
-        $catalogs = Catalog::all();
-        return $catalogs;
+        return redirect()->back();
     }
 }

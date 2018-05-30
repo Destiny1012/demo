@@ -20,3 +20,5 @@ Route::post('/logout', 'UserController@logout')->name('logout');
 
 Route::resource('/goods', 'GoodsController');
 Route::resource('/catalog', 'CatalogController');
+
+Route::get('/test', 'GoodsController@test')->name('test');

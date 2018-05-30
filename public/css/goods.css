@@ -1,6 +1,23 @@
 @media (max-width: 768px) {
-  .table-responsive {
+  .goods-card .table-responsive {
     overflow-x: scroll;
+  }
+}
+
+@media (min-width: 992px) {
+  .goods-card .goods-store {
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+  }
+}
+
+@media (max-width: 992px) {
+  .goods-card .goods-store {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .goods-card .goods-catalog {
+    padding-top: 20px;
   }
 }
 
@@ -16,16 +33,16 @@
 
 .goods-card .image-box {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
 }
 
 .goods-card .image-box #image {
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
   opacity: 0;
   z-index: 777;
@@ -35,9 +52,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
-  height: 160px;
-  border: 1px solid var(--gray);
+  width: 120px;
+  height: 120px;
+  border: 1px solid #ced4da;
   z-index: 666;
 }
 
@@ -49,13 +66,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
-  height: 160px;
-  color: var(--gray);
+  width: 120px;
+  height: 120px;
+  color: #ced4da;
   font-size: 60px;
   text-align: center;
-  line-height: 158px;
-  border: 1px solid var(--gray);
+  line-height: 118px;
+  border: 1px solid #ced4da;
   z-index: 555;
+}
+
+.goods-card .catalog-box .btn-link {
+  text-decoration: underline;
+}
+
+.goods-card .catalog-box form {
+  padding: 0;
 }
 
