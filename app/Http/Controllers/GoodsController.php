@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Goods;
 use App\Catalog;
@@ -49,7 +50,34 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'image' => 'image',
+            'name' => 'required|unique:goods',
+            'price' => 'required|digits_between:0.01,999',
+            'sale' => 'nullable|digits_between:0,10',
+            'surplus' => 'required|integer',
+            'catalog' => 'required|exists:catalogs,catalog',
+            'description' => 'nullable',
+        ]);
+
+        if (empty($validatedData->image)) {
+            $path = 'goods/no-image.jpg';
+        } else {
+            $path = Storage::putFile('/goods', $validatedData->image);
+        }
+
+        Goods::create([
+            'image' => $path,
+            'name' => $validatedData->name,
+            'price' => $validatedData->price,
+            'sale' => $validatedData->sale,
+            'surplus' => $validatedData->surplus,
+            'catalog' => $validatedData->catalog,
+            'description' => $validatedData->description,
+        ]);
+
+        session()->flash('success', $path);
+        return redirect()->back();
     }
 
     /**
