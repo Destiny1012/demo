@@ -161,7 +161,7 @@
         </div>
 
         <footer class="footer">
-            <p>Copyright © 2017 Tricker Pan 2017-2018</p>
+            <p>Copyright © 2017 Tricker Pan</p>
         </footer>
     </div>
 

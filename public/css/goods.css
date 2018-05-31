@@ -31,6 +31,11 @@
   padding: 5px;
 }
 
+.goods-card .table .goods-image {
+  width: 90px;
+  height: 90px;
+}
+
 .goods-card .image-box {
   position: relative;
   width: 120px;

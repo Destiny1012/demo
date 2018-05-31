@@ -24,7 +24,7 @@
                                 <th scope="col" width="50px">总量</th>
                                 <th scope="col" width="50px">已售</th>
                                 <th scope="col" width="60px">目录</th>
-                                <th scope="col" width="40px">操作</th>
+                                <th scope="col" width="60px">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,7 +33,9 @@
                                 <th scope="row">
                                     <p>{{ $good->id }}</p>
                                 </th>
-                                <td><img class="goods-image" src="{{ $good->image }}" alt="{{ $good->name }}" /></td>
+                                <td>
+                                    <img class="goods-image" src="{{ asset('storage/' . $good->image) }}" alt="{{ $good->name }}" />
+                                </td>
                                 <td>
                                     <p>{{ $good->name }}</p>
                                 </td>
@@ -56,7 +58,11 @@
                                     <p>{{ $good->catalog }}</p>
                                 </td>
                                 <td>
-                                    <div></div>
+                                    <a class="btn btn-sm btn-success mb-1" href="{{ route('goods.edit', $good->id) }}">修改</a>
+                                    <form action="{{ route('goods.destroy', $good->id) }}" method="post">
+                                        @csrf {{ method_field('DELETE') }}
+                                        <button class="btn btn-sm btn-danger" type="submit">删除</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

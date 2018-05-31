@@ -60,20 +60,21 @@ class GoodsController extends Controller
             'description' => 'nullable',
         ]);
 
-        if (empty($validatedData->image)) {
-            $path = 'goods/no-image.jpg';
+        if (empty($validatedData['image'])) {
+            $path = 'goods/none.jpg';
         } else {
-            $path = Storage::putFile('/goods', $validatedData->image);
+            $path = Storage::putFile('/goods', $validatedData['image']);
         }
 
         Goods::create([
             'image' => $path,
-            'name' => $validatedData->name,
-            'price' => $validatedData->price,
-            'sale' => $validatedData->sale,
-            'surplus' => $validatedData->surplus,
-            'catalog' => $validatedData->catalog,
-            'description' => $validatedData->description,
+            'name' => $validatedData['name'],
+            'price' => $validatedData['price'],
+            'sale' => $validatedData['sale'],
+            'surplus' => $validatedData['surplus'],
+            'sold' => 0,
+            'catalog' => $validatedData['catalog'],
+            'description' => $validatedData['description'],
         ]);
 
         session()->flash('success', $path);
@@ -111,7 +112,15 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'image' => 'image',
+            'name' => 'required|unique:goods',
+            'price' => 'required|digits_between:0.01,999',
+            'sale' => 'nullable|digits_between:0,10',
+            'surplus' => 'required|integer',
+            'catalog' => 'required|exists:catalogs,catalog',
+            'description' => 'nullable',
+        ]);
     }
 
     /**
@@ -122,7 +131,8 @@ class GoodsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $goods = Goods::find($id);
+        Storage::delete($goods->image);
     }
 
     public function test()
