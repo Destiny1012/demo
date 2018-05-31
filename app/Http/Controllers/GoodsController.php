@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Goods;
@@ -100,7 +102,9 @@ class GoodsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $goods = Goods::find($id);
+        $catalogs = Catalog::all();
+        return view('goods.edit', compact('goods', 'catalogs'));
     }
 
     /**
@@ -112,15 +116,38 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Validator::make($request->all(), [
+            'name' => [
+                Rule::unique('goods')->ignore($id),
+            ]
+        ]);
+
         $validatedData = $request->validate([
             'image' => 'image',
-            'name' => 'required|unique:goods',
+            'name' => 'required',
             'price' => 'required|digits_between:0.01,999',
             'sale' => 'nullable|digits_between:0,10',
             'surplus' => 'required|integer',
             'catalog' => 'required|exists:catalogs,catalog',
             'description' => 'nullable',
         ]);
+
+        $goods = Goods::find($id);
+        $goods->name = $validatedData['name'];
+        $goods->price = $validatedData['price'];
+        $goods->sale = $validatedData['sale'];
+        $goods->surplus = $validatedData['surplus'];
+        $goods->catalog = $validatedData['catalog'];
+        $goods->description = $validatedData['description'];
+
+        if (!empty($validatedData['image'])) {
+            Storage::delete($goods->image);
+            $path = Storage::putFile('/goods', $validatedData['image']);
+            $goods->image = $path;
+        }
+
+        $goods->save();
+        return redirect()->route('goods.index');
     }
 
     /**
@@ -133,6 +160,7 @@ class GoodsController extends Controller
     {
         $goods = Goods::find($id);
         Storage::delete($goods->image);
+        $goods->delete();
     }
 
     public function test()

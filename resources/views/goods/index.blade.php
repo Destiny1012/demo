@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col">
         <div class="card card-default goods-card">
-            <div class="card-header">标题</div>
+            <div class="card-header">商品列表</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
