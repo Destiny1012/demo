@@ -19,7 +19,7 @@ class CreateGoodsTable extends Migration
             $table->string('image')->nullable();
             $table->float('price');
             $table->float('sale')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('surplus');
             $table->integer('sold')->nullable();
             $table->string('catalog');
