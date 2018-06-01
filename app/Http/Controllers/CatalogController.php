@@ -8,9 +8,9 @@ use App\Catalog;
 class CatalogController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 返回所有分类
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -19,20 +19,10 @@ class CatalogController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 添加一个分类
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -48,33 +38,11 @@ class CatalogController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 更新一个分类
      *
+     * @param  Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -90,10 +58,10 @@ class CatalogController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除一个分类
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

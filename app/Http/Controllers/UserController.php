@@ -18,6 +18,11 @@ class UserController extends Controller
         $this->middleware('auth')->except('login');
     }
 
+    /**
+     * 返回主页, 并验证是否为管理员
+     *
+     * @return Response
+     */
     public function index()
     {
         $user = Auth::user();
@@ -31,7 +36,7 @@ class UserController extends Controller
     }
 
     /**
-     * 登录请求
+     * 登录请求, 并验证账密
      *
      * @param Request $request
      * @return Response
@@ -44,12 +49,6 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($validatedData, $request->has('remember'))) {
-            // $user = Auth::user();
-            // if ($user->is_admin == false) {
-            //     Auth::logout();
-            //     session()->flash('danger', '您没有权限！');
-            //     return redirect()->back();
-            // }
             session()->flash('success', '祝您使用愉快！');
             return redirect()->intended(route('home'));
         } else {
@@ -58,6 +57,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * 登出操作
+     *
+     * @return response
+     */
     public function logout()
     {
         Auth::logout();

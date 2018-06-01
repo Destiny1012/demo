@@ -23,9 +23,9 @@ class GoodsController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * 返回商品分页
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -34,9 +34,9 @@ class GoodsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 返回添加商品页面
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -45,10 +45,10 @@ class GoodsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 添加一个新商品
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -84,21 +84,10 @@ class GoodsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 返回商品编辑页面
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -108,11 +97,11 @@ class GoodsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新一个商品
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -151,7 +140,7 @@ class GoodsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除一个商品
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -161,12 +150,5 @@ class GoodsController extends Controller
         $goods = Goods::find($id);
         Storage::delete($goods->image);
         $goods->delete();
-    }
-
-    public function test()
-    {
-        $goods = Goods::all();
-        $catalogs = Catalog::all();
-        return compact($goods, $catalogs);
     }
 }
