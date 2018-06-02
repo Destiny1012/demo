@@ -15,7 +15,13 @@ use Illuminate\Http\Request;
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) { return $request->user(); });
 
-Route::get('/catalog', 'Api\CatalogController@index');
-Route::get('/goods', 'Api\GoodsController@index');
-Route::get('/order', 'Api\OrderController@index');
-Route::post('/order', 'Api\OrderController@store');
+Route::post('/register', 'Api\UserController@store');
+Route::post('/login', 'Api\UserController@login');
+Route::post('/logout', 'Api\UserController@logout');
+Route::post('/user/{user}', 'Api\UserController@show');
+Route::post('/user/update/{user}', 'Api\UserController@update');
+
+Route::post('/catalog', 'Api\CatalogController@index');
+Route::post('/goods', 'Api\GoodsController@index');
+Route::post('/order', 'Api\OrderController@index');
+Route::post('/order/{user}', 'Api\OrderController@store');
