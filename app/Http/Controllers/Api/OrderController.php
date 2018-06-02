@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\Http\Resources\OrderResource;
 
 class OrderController extends Controller
 {
@@ -12,9 +14,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $orders = new OrderResource(Order::where('user', $request->user)->paginate(10));
+        return $orders;
     }
 
     /**

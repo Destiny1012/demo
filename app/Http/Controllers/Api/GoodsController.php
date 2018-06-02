@@ -12,11 +12,11 @@ class GoodsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function index(Request $request)
     {
-        // $goods = Goods::where('catalog', $request->catalog)->get();
         $goods = new GoodsResource(Goods::where('catalog', $request->catalog)->paginate(10));
         return $goods;
     }
