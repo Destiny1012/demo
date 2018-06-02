@@ -19,12 +19,23 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validatedData = Validator::make($request->all(), [
-            'account' => 'required',
+            'account' => 'required|exists:users,account',
             'password' => 'required',
         ]);
 
         if ($validatedData->fails()) {
             return response()->json(['error'=>$validatedData->errors()]);
+        }
+
+        return var_dump($validatedData);
+
+        if (Auth::attempt($validatedData)) {
+            $user = Auth::user();
+            $token = $user->refreshToken($user->account)->accessToken;
+            return response()->json([
+                'user' => $user,
+                'token' => $token,
+            ]);
         }
     }
     
