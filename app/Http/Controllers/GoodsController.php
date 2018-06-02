@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
+// use Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -55,8 +55,22 @@ class GoodsController extends Controller
         $validatedData = $request->validate([
             'image' => 'image',
             'name' => 'required|unique:goods',
-            'price' => 'required|digits_between:0.01,999',
-            'sale' => 'nullable|digits_between:0,10',
+            'price' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if ($value <= 0.01 || $value >= 999) {
+                        return $fail($attribute . '必须在 0.01 到 1000 之间。');
+                    }
+                }
+            ],
+            'sale' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if ($value < 0 || $value >= 10) {
+                        return $fail($attribute . '必须在 0 到 10 之间。');
+                    }
+                }
+            ],
             'surplus' => 'required|integer',
             'catalog' => 'required|exists:catalogs,catalog',
             'description' => 'nullable',
@@ -105,17 +119,28 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Validator::make($request->all(), [
-            'name' => [
-                Rule::unique('goods')->ignore($id),
-            ]
-        ]);
-
         $validatedData = $request->validate([
             'image' => 'image',
-            'name' => 'required',
-            'price' => 'required|digits_between:0.01,999',
-            'sale' => 'nullable|digits_between:0,10',
+            'name' => [
+                'required',
+                Rule::unique('goods')->ignore($id),
+            ],
+            'price' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if ($value <= 0.01 || $value >= 999) {
+                        return $fail($attribute . '必须在 0.01 到 1000 之间。');
+                    }
+                }
+            ],
+            'sale' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if ($value < 0 || $value >= 10) {
+                        return $fail($attribute . '必须在 0= 到 10 之间。');
+                    }
+                }
+            ],
             'surplus' => 'required|integer',
             'catalog' => 'required|exists:catalogs,catalog',
             'description' => 'nullable',
